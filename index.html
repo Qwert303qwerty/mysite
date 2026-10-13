@@ -1,56 +1,431 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nova — цифровой мир</title>
+<meta name="theme-color" content="#080b14">
+<meta name="description" content="NOVA VPN — современный VPN-сервис. Подключение, приложения и поддержка.">
+<title>NOVA VPN — интернет без границ</title>
 <style>
+:root {
+  --bg:#080b14;
+  --panel:#111827;
+  --panel2:#151f31;
+  --text:#f4f7ff;
+  --muted:#a2aec5;
+  --blue:#65a7ff;
+  --cyan:#66f0df;
+  --border:rgba(255,255,255,.10);
+}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top right,#29105c,#030712 55%);color:#f5f5ff;font-family:system-ui,sans-serif}
-header{padding:22px;display:flex;justify-content:space-between;border-bottom:1px solid #29264f}
-.logo{font-size:23px;font-weight:900;letter-spacing:4px}
-.logo span{color:#49caff}
-nav a{color:#c9c8ee;margin-left:12px;text-decoration:none;font-size:13px}
-.hero{padding:65px 24px;text-align:center}
-.tag{color:#c5a2ff;border:1px solid #574184;padding:8px 13px;border-radius:25px;font-size:12px}
-h1{font-size:clamp(65px,15vw,100px);margin:25px 0;background:linear-gradient(90deg,#38d9ff,#a34dff);background-clip:text;-webkit-background-clip:text;color:transparent}
-h2{font-size:25px}
-p{color:#adb9d7;line-height:1.8}
-.btn{display:inline-block;padding:13px 20px;margin:8px;border-radius:12px;text-decoration:none;color:white;background:linear-gradient(100deg,#246bff,#a12df4)}
-.planet{margin:35px auto;width:180px;height:180px;border:2px solid #7775ff;border-radius:50%;display:grid;place-items:center;font-size:75px;font-weight:900;background:radial-gradient(circle at 35% 30%,#29458d,#090b24 70%);box-shadow:0 0 45px #545dff88;animation:float 4s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-10px)}}
-section{padding:25px 20px 60px;max-width:900px;margin:auto}
-.heading{text-align:center}
-.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.card{padding:18px;border:1px solid #29264f;border-radius:17px;background:#0c1227}
-.card h3{margin-bottom:5px}
-.card p{font-size:14px}
-footer{text-align:center;padding:25px;border-top:1px solid #29264f;color:#aab6d5}
-@media(min-width:700px){.hero{padding:85px 20px}.cards{grid-template-columns:repeat(4,minmax(0,1fr))}}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  margin:0;background:
+  radial-gradient(ellipse at 80% 0%,rgba(50,100,220,.18),transparent 40%),
+  radial-gradient(ellipse at 0% 40%,rgba(39,207,196,.08),transparent 35%),
+  var(--bg);
+  color:var(--text);font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6
+}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+button,a{ -webkit-tap-highlight-color:transparent }
+.container{width:min(1120px,92%);margin:auto}
+header{
+  position:sticky;top:0;z-index:10;
+  background:rgba(8,11,20,.86);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border)
+}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-weight:900;font-size:23px;letter-spacing:2px}
+.logo span{color:var(--cyan)}
+.navlinks{display:flex;gap:24px;color:var(--muted);font-size:14px}
+.navlinks a:hover{color:var(--cyan)}
+.btn{
+  display:inline-flex;justify-content:center;align-items:center;gap:8px;
+  padding:13px 20px;border-radius:13px;border:1px solid transparent;
+  font-weight:800;cursor:pointer;transition:.2s
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(120deg,var(--blue),var(--cyan));color:#061019}
+.btn-secondary{border-color:var(--border);background:rgba(255,255,255,.04)}
+.menu{display:none;background:none;color:white;border:0;font-size:25px}
+.hero{padding:95px 0 75px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center}
+.eyebrow{
+  display:inline-block;padding:7px 12px;border:1px solid rgba(102,240,223,.25);
+  background:rgba(102,240,223,.07);color:var(--cyan);
+  border-radius:30px;font-size:12px;font-weight:bold;letter-spacing:1px
+}
+h1{font-size:clamp(42px,6vw,72px);line-height:1.04;letter-spacing:-2px;margin:22px 0}
+.gradient{background:linear-gradient(100deg,var(--blue),var(--cyan));color:transparent;background-clip:text}
+.lead{color:var(--muted);font-size:18px;max-width:570px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}
+.small-note{font-size:12px;color:var(--muted)}
+.visual{
+  position:relative;min-height:340px;border:1px solid var(--border);
+  border-radius:30px;background:linear-gradient(145deg,#15243b,#0b1120);
+  display:grid;place-items:center;overflow:hidden
+}
+.visual:before,.visual:after{
+  content:"";position:absolute;border:1px solid rgba(102,240,223,.15);
+  border-radius:50%;width:260px;height:260px
+}
+.visual:after{width:330px;height:330px}
+.orb{
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle at 35% 25%,#a3fff2,#4ba9ff 45%,#3431a0 75%);
+  box-shadow:0 0 75px rgba(81,169,255,.4);
+  display:grid;place-items:center;font-size:70px;z-index:1
+}
+.status{
+  position:absolute;bottom:22px;left:22px;right:22px;
+  background:rgba(6,13,26,.8);border:1px solid var(--border);
+  padding:13px 16px;border-radius:15px;display:flex;justify-content:space-between;
+  gap:12px;font-size:13px
+}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#f5c451;margin-right:7px}
+section{padding:70px 0}
+.section-head{text-align:center;max-width:680px;margin:0 auto 35px}
+h2{font-size:clamp(30px,4vw,43px);line-height:1.15;margin:0 0 14px}
+.section-head p,.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.card{
+  background:linear-gradient(145deg,rgba(21,31,49,.94),rgba(13,19,32,.94));
+  border:1px solid var(--border);border-radius:20px;padding:24px
+}
+.card h3{margin:10px 0 8px;font-size:19px}
+.card p{color:var(--muted);font-size:14px;margin-bottom:0}
+.icon{
+  display:grid;place-items:center;width:47px;height:47px;border-radius:14px;
+  background:rgba(102,240,223,.09);font-size:23px
+}
+.server-top{display:flex;align-items:center;gap:13px}
+.flag{font-size:30px}
+.server-status{font-size:12px;color:#f5c451;margin-top:5px}
+.price{font-size:26px;font-weight:900;margin:18px 0 6px}
+.server-card .btn{width:100%;margin-top:18px}
+.steps{counter-reset:step}
+.step{position:relative;padding-left:62px;min-height:55px;margin:22px 0}
+.step:before{
+  counter-increment:step;content:counter(step);
+  position:absolute;left:0;top:0;width:42px;height:42px;border-radius:13px;
+  display:grid;place-items:center;background:rgba(101,167,255,.13);
+  color:var(--blue);font-weight:900
+}
+.step p{margin:4px 0;color:var(--muted);font-size:14px}
+.app-card{display:flex;flex-direction:column;align-items:flex-start}
+.tag{font-size:11px;padding:5px 9px;border-radius:20px;background:#202e43;color:var(--cyan)}
+.faq{max-width:800px;margin:auto}
+details{padding:19px 0;border-bottom:1px solid var(--border)}
+summary{cursor:pointer;font-weight:bold}
+details p{color:var(--muted);font-size:14px}
+.cta{
+  padding:38px;border-radius:25px;border:1px solid rgba(102,240,223,.2);
+  background:linear-gradient(120deg,rgba(55,111,193,.16),rgba(49,194,180,.08));
+  display:flex;align-items:center;justify-content:space-between;gap:25px
+}
+.cta p{color:var(--muted);margin-bottom:0}
+footer{padding:30px 0;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--cyan)}
+.modal{
+  display:none;position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.75);
+  padding:20px;align-items:center;justify-content:center
+}
+.modal.show{display:flex}
+.modal-box{
+  width:min(440px,100%);background:#111827;border:1px solid var(--border);
+  padding:26px;border-radius:22px;position:relative
+}
+.modal-box h2{font-size:27px}
+.modal-box label{display:block;margin:14px 0 6px;font-size:13px}
+.modal-box input,.modal-box select{
+  width:100%;padding:13px;border-radius:11px;background:#0a1020;
+  border:1px solid var(--border);color:white
+}
+.modal-box .btn{width:100%;margin-top:18px}
+.close{position:absolute;right:17px;top:12px;background:none;border:0;color:white;font-size:27px;cursor:pointer}
+@media(max-width:800px){
+  .navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:#0c1220;padding:22px;flex-direction:column;gap:18px;border-bottom:1px solid var(--border)}
+  .navlinks.open{display:flex}
+  .menu{display:block}
+  .nav>.btn{display:none}
+  .hero{padding:60px 0 45px}
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .visual{min-height:280px}
+  .grid{grid-template-columns:1fr}
+  section{padding:52px 0}
+  .cta{padding:25px;align-items:flex-start;flex-direction:column}
+  h1{letter-spacing:-1.5px}
+}
 </style>
 </head>
 <body>
-<header><div class="logo"><span>✦</span> NOVA</div><nav><a href="#home">Главная</a><a href="#features">Возможности</a><a href="#about">О проекте</a></nav></header>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home">NOVA<span>VPN</span></a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#features">Преимущества</a>
+      <a href="#servers">Локации</a>
+      <a href="#apps">Приложения</a>
+      <a href="#faq">FAQ</a>
+      <a href="#support">Поддержка</a>
+    </nav>
+    <a class="btn btn-primary" href="#servers">Подключиться ↗</a>
+    <button class="menu" id="menu" aria-label="Открыть меню">☰</button>
+  </div>
+</header>
+
 <main>
-<div class="hero" id="home">
-<span class="tag">✦ ТВОЙ ЦИФРОВОЙ МИР</span>
-<h1>NOVA</h1>
-<h2>Идеи превращаются в возможности.</h2>
-<p>Мой личный веб-проект о технологиях, экспериментах и новых идеях. И это только начало!</p>
-<a class="btn" href="#features">🚀 Исследовать</a>
-<div class="planet">N</div>
-</div>
-<section id="features">
-<div class="heading"><h2>Возможности Nova</h2><p>Современный стиль. Большие идеи.</p></div>
-<div class="cards">
-<div class="card"><h3>✧ Дизайн</h3><p>Неоновые цвета и красивые эффекты.</p></div>
-<div class="card"><h3>⚡ Скорость</h3><p>Лёгкая страница без лишних библиотек.</p></div>
-<div class="card"><h3>📱 Адаптивность</h3><p>Удобно на телефоне и компьютере.</p></div>
-<div class="card"><h3>🌌 Развитие</h3><p>Новые идеи и функции впереди.</p></div>
-</div>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">✦ ТВОЙ ИНТЕРНЕТ. ТВОИ ПРАВИЛА.</span>
+      <h1>Интернет<br>без <span class="gradient">границ</span></h1>
+      <p class="lead">NOVA VPN — удобное подключение, понятные инструкции и помощь с настройкой. Выбери приложение и узнай условия подключения.</p>
+      <div class="actions">
+        <button class="btn btn-primary" data-order>Узнать тарифы ↗</button>
+        <a class="btn btn-secondary" href="#apps">Как подключить ↓</a>
+      </div>
+      <p class="small-note">Условия и доступность подключения уточняются у поддержки.</p>
+    </div>
+    <div class="visual">
+      <div class="orb">✦</div>
+      <div class="status">
+        <span><span class="dot"></span>Демо-интерфейс</span>
+        <span>Защищённое соединение</span>
+      </div>
+    </div>
+  </div>
 </section>
-<section id="about"><div class="heading"><h2>Это только начало</h2><p>Nova развивается шаг за шагом. Спасибо, что заглянул!</p></div></section>
+
+<section id="features">
+  <div class="container">
+    <div class="section-head">
+      <h2>Почему <span class="gradient">NOVA VPN?</span></h2>
+      <p>Простой старт и поддержка на каждом этапе настройки.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="icon">⚡</div>
+        <h3>Простая настройка</h3>
+        <p>Пошагово объясним, как установить приложение и добавить конфигурацию.</p>
+      </article>
+      <article class="card">
+        <div class="icon">🌍</div>
+        <h3>Разные локации</h3>
+        <p>Уточни у поддержки, какие серверы реально доступны на данный момент.</p>
+      </article>
+      <article class="card">
+        <div class="icon">💬</div>
+        <h3>Поддержка в чате</h3>
+        <p>Задай вопрос по совместимости, подключению или условиям тарифа.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="servers">
+  <div class="container">
+    <div class="section-head">
+      <h2>Выбери <span class="gradient">локацию</span></h2>
+      <p>Это демонстрационные карточки, а не подтверждение работающих серверов. Уточни наличие перед оплатой.</p>
+    </div>
+    <div class="grid">
+      <article class="card server-card">
+        <div class="server-top"><span class="flag">🇳🇱</span><div><h3>Нидерланды</h3><div class="server-status">Наличие уточняется</div></div></div>
+        <div class="price">Уточнить</div>
+        <p>Условия подключения и доступность — через поддержку.</p>
+        <button class="btn btn-secondary" data-order data-server="Нидерланды">Узнать подробнее</button>
+      </article>
+      <article class="card server-card">
+        <div class="server-top"><span class="flag">🇩🇪</span><div><h3>Германия</h3><div class="server-status">Наличие уточняется</div></div></div>
+        <div class="price">Уточнить</div>
+        <p>Спроси, доступна ли эта локация и какой тариф предлагается.</p>
+        <button class="btn btn-secondary" data-order data-server="Германия">Узнать подробнее</button>
+      </article>
+      <article class="card server-card">
+        <div class="server-top"><span class="flag">🇫🇮</span><div><h3>Финляндия</h3><div class="server-status">Наличие уточняется</div></div></div>
+        <div class="price">Уточнить</div>
+        <p>Реальная доступность зависит от настроенной инфраструктуры.</p>
+        <button class="btn btn-secondary" data-order data-server="Финляндия">Узнать подробнее</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="container">
+    <div class="section-head">
+      <h2>Подключение за <span class="gradient">несколько шагов</span></h2>
+      <p>Для подключения нужен совместимый клиент и действующая конфигурация от поставщика сервиса.</p>
+    </div>
+    <div class="grid">
+      <article class="card app-card">
+        <span class="tag">ANDROID</span>
+        <div class="icon" style="margin-top:15px">📱</div>
+        <h3>Happ</h3>
+        <p>VPN-клиент. Скачивай только из доверенного источника и проверяй разработчика.</p>
+        <a class="btn btn-secondary" style="margin-top:20px" href="https://play.google.com/store/search?q=Happ%20VPN&c=apps" target="_blank" rel="noopener">Найти приложение ↗</a>
+      </article>
+      <article class="card app-card">
+        <span class="tag">ANDROID / IOS</span>
+        <div class="icon" style="margin-top:15px">🛡️</div>
+        <h3>v2RayTun</h3>
+        <p>Клиент для совместимых конфигураций. Поддержка зависит от версии приложения.</p>
+        <a class="btn btn-secondary" style="margin-top:20px" href="https://play.google.com/store/search?q=v2RayTun&c=apps" target="_blank" rel="noopener">Найти приложение ↗</a>
+      </article>
+      <article class="card app-card">
+        <span class="tag">ПРОТОКОЛ</span>
+        <div class="icon" style="margin-top:15px">🔗</div>
+        <h3>VLESS</h3>
+        <p>Протокол, который могут поддерживать совместимые клиенты. Сам по себе он не создаёт сервер.</p>
+        <button class="btn btn-secondary" style="margin-top:20px" data-order>Уточнить совместимость</button>
+      </article>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3>Как начать</h3>
+      <div class="steps">
+        <div class="step"><strong>Свяжись с поддержкой</strong><p>Уточни наличие сервера, стоимость и совместимость устройства.</p></div>
+        <div class="step"><strong>Установи совместимое приложение</strong><p>Используй официальный магазин приложений или сайт разработчика.</p></div>
+        <div class="step"><strong>Получи действующую конфигурацию</strong><p>Добавь выданную конфигурацию в клиент и следуй инструкции поддержки.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-head">
+      <h2>Частые <span class="gradient">вопросы</span></h2>
+      <p>Коротко о главном.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Это уже работающий VPN?</summary>
+        <p>Сайт — витрина. Для реального VPN нужны настроенные серверы, конфигурации, обслуживание и проверка подключения. Этот HTML-файл сам по себе VPN не запускает.</p>
+      </details>
+      <details>
+        <summary>Сколько стоит подключение?</summary>
+        <p>Цены не указаны. Напиши в поддержку и уточни стоимость, срок действия и условия до оплаты.</p>
+      </details>
+      <details>
+        <summary>Что такое VLESS?</summary>
+        <p>Это протокол, используемый некоторыми системами проксирования. Для работы необходим совместимый сервер и клиент.</p>
+      </details>
+      <details>
+        <summary>Где получить конфигурацию?</summary>
+        <p>У администратора реально работающего сервиса. Не публикуй личные ключи и конфигурации в открытом доступе.</p>
+      </details>
+      <details>
+        <summary>Как связаться с поддержкой?</summary>
+        <p>Нажми кнопку WhatsApp ниже. Откроется чат с указанным номером.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="support">
+  <div class="container">
+    <div class="cta">
+      <div>
+        <h2>Есть вопросы?</h2>
+        <p>Напиши нам — уточни тарифы, доступные серверы и настройку.</p>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/79285565189?text=Здравствуйте!%20Хочу%20узнать%20про%20NOVA%20VPN" target="_blank" rel="noopener">Написать в WhatsApp ↗</a>
+    </div>
+  </div>
+</section>
 </main>
-<footer>✦ NOVA · Создано с 💜 на Android · 2026</footer>
+
+<footer>
+  <div class="container footer-inner">
+    <div><a class="logo" href="#home">NOVA<span>VPN</span></a><p>© <span id="year"></span> NOVA VPN</p></div>
+    <div>Доступность услуг и условия уточняются у поддержки.</div>
+  </div>
+</footer>
+
+<div class="modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="close" id="closeModal" aria-label="Закрыть">×</button>
+    <h2 id="modalTitle">Узнать о подключении</h2>
+    <p class="muted">Заполни форму — откроется WhatsApp с готовым сообщением.</p>
+    <form id="orderForm">
+      <label for="name">Как к тебе обращаться?</label>
+      <input id="name" name="name" maxlength="60" placeholder="Имя" required>
+      <label for="server">Интересующая локация</label>
+      <select id="server" name="server">
+        <option>Пока не выбрал</option>
+        <option>Нидерланды</option>
+        <option>Германия</option>
+        <option>Финляндия</option>
+        <option>VLESS / совместимость</option>
+      </select>
+      <label for="question">Вопрос (необязательно)</label>
+      <input id="question" name="question" maxlength="300" placeholder="Например, какие тарифы есть?">
+      <button class="btn btn-primary" type="submit">Продолжить в WhatsApp ↗</button>
+    </form>
+  </div>
+</div>
+
+<script>
+const menu = document.getElementById('menu');
+const navlinks = document.getElementById('navlinks');
+const modal = document.getElementById('orderModal');
+const serverSelect = document.getElementById('server');
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+menu.addEventListener('click', () => {
+  navlinks.classList.toggle('open');
+});
+
+navlinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navlinks.classList.remove('open'));
+});
+
+function openModal(server) {
+  if (server) serverSelect.value = server;
+  modal.classList.add('show');
+  document.getElementById('name').focus();
+}
+
+document.querySelectorAll('[data-order]').forEach(button => {
+  button.addEventListener('click', () => openModal(button.dataset.server));
+});
+
+document.getElementById('closeModal').addEventListener('click', () => {
+  modal.classList.remove('show');
+});
+
+modal.addEventListener('click', event => {
+  if (event.target === modal) modal.classList.remove('show');
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') modal.classList.remove('show');
+});
+
+document.getElementById('orderForm').addEventListener('submit', event => {
+  event.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const server = serverSelect.value;
+  const question = document.getElementById('question').value.trim();
+  const message = [
+    'Здравствуйте! Интересует NOVA VPN.',
+    'Имя: ' + name,
+    'Локация: ' + server,
+    question ? 'Вопрос: ' + question : ''
+  ].filter(Boolean).join('\n');
+
+  const url = 'https://wa.me/79285565189?text=' + encodeURIComponent(message);
+  window.open(url, '_blank', 'noopener');
+  modal.classList.remove('show');
+});
+</script>
 </body>
 </html>
+
