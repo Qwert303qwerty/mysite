@@ -1,80 +1,56 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nova — мой сайт</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      color: white;
-      background: #090b16;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 24px;
-    }
-
-    .card {
-      max-width: 500px;
-      padding: 36px 24px;
-      border: 1px solid #343754;
-      border-radius: 24px;
-      background: #15182a;
-      box-shadow: 0 0 50px #5145cd22;
-    }
-
-    .logo {
-      color: #9d8cff;
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: 5px;
-    }
-
-    h1 {
-      font-size: 44px;
-      margin: 24px 0 12px;
-    }
-
-    p {
-      color: #b7bad0;
-      line-height: 1.7;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 15px 25px;
-      border: 0;
-      border-radius: 12px;
-      background: #7865ff;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:active {
-      transform: scale(0.96);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova — цифровой мир</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top right,#29105c,#030712 55%);color:#f5f5ff;font-family:system-ui,sans-serif}
+header{padding:22px;display:flex;justify-content:space-between;border-bottom:1px solid #29264f}
+.logo{font-size:23px;font-weight:900;letter-spacing:4px}
+.logo span{color:#49caff}
+nav a{color:#c9c8ee;margin-left:12px;text-decoration:none;font-size:13px}
+.hero{padding:65px 24px;text-align:center}
+.tag{color:#c5a2ff;border:1px solid #574184;padding:8px 13px;border-radius:25px;font-size:12px}
+h1{font-size:clamp(65px,15vw,100px);margin:25px 0;background:linear-gradient(90deg,#38d9ff,#a34dff);background-clip:text;-webkit-background-clip:text;color:transparent}
+h2{font-size:25px}
+p{color:#adb9d7;line-height:1.8}
+.btn{display:inline-block;padding:13px 20px;margin:8px;border-radius:12px;text-decoration:none;color:white;background:linear-gradient(100deg,#246bff,#a12df4)}
+.planet{margin:35px auto;width:180px;height:180px;border:2px solid #7775ff;border-radius:50%;display:grid;place-items:center;font-size:75px;font-weight:900;background:radial-gradient(circle at 35% 30%,#29458d,#090b24 70%);box-shadow:0 0 45px #545dff88;animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+section{padding:25px 20px 60px;max-width:900px;margin:auto}
+.heading{text-align:center}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{padding:18px;border:1px solid #29264f;border-radius:17px;background:#0c1227}
+.card h3{margin-bottom:5px}
+.card p{font-size:14px}
+footer{text-align:center;padding:25px;border-top:1px solid #29264f;color:#aab6d5}
+@media(min-width:700px){.hero{padding:85px 20px}.cards{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
 </head>
 <body>
-  <main class="card">
-    <div class="logo">N O V A</div>
-    <h1>Твой новый сайт</h1>
-    <p>Создан прямо с телефона.<br>
-       И это только начало.</p>
-    <button onclick="alert('Добро пожаловать в Nova!')">
-      Начать 🚀
-    </button>
-  </main>
+<header><div class="logo"><span>✦</span> NOVA</div><nav><a href="#home">Главная</a><a href="#features">Возможности</a><a href="#about">О проекте</a></nav></header>
+<main>
+<div class="hero" id="home">
+<span class="tag">✦ ТВОЙ ЦИФРОВОЙ МИР</span>
+<h1>NOVA</h1>
+<h2>Идеи превращаются в возможности.</h2>
+<p>Мой личный веб-проект о технологиях, экспериментах и новых идеях. И это только начало!</p>
+<a class="btn" href="#features">🚀 Исследовать</a>
+<div class="planet">N</div>
+</div>
+<section id="features">
+<div class="heading"><h2>Возможности Nova</h2><p>Современный стиль. Большие идеи.</p></div>
+<div class="cards">
+<div class="card"><h3>✧ Дизайн</h3><p>Неоновые цвета и красивые эффекты.</p></div>
+<div class="card"><h3>⚡ Скорость</h3><p>Лёгкая страница без лишних библиотек.</p></div>
+<div class="card"><h3>📱 Адаптивность</h3><p>Удобно на телефоне и компьютере.</p></div>
+<div class="card"><h3>🌌 Развитие</h3><p>Новые идеи и функции впереди.</p></div>
+</div>
+</section>
+<section id="about"><div class="heading"><h2>Это только начало</h2><p>Nova развивается шаг за шагом. Спасибо, что заглянул!</p></div></section>
+</main>
+<footer>✦ NOVA · Создано с 💜 на Android · 2026</footer>
 </body>
 </html>
-
