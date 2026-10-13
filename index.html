@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova — мой сайт</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: #090b16;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .card {
+      max-width: 500px;
+      padding: 36px 24px;
+      border: 1px solid #343754;
+      border-radius: 24px;
+      background: #15182a;
+      box-shadow: 0 0 50px #5145cd22;
+    }
+
+    .logo {
+      color: #9d8cff;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 5px;
+    }
+
+    h1 {
+      font-size: 44px;
+      margin: 24px 0 12px;
+    }
+
+    p {
+      color: #b7bad0;
+      line-height: 1.7;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 25px;
+      border: 0;
+      border-radius: 12px;
+      background: #7865ff;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">N O V A</div>
+    <h1>Твой новый сайт</h1>
+    <p>Создан прямо с телефона.<br>
+       И это только начало.</p>
+    <button onclick="alert('Добро пожаловать в Nova!')">
+      Начать 🚀
+    </button>
+  </main>
+</body>
+</html>
+
